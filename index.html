@@ -10,24 +10,28 @@
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700;800&family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0D0710;
-    --surface:#1A0F20;
-    --surface-2:#170B1C;
-    --grid:#2A1830;
-    --teal:#FF5C8A;          /* cherry-coke pink/red pop, replaces old teal accent */
-    --teal-dim:#7A2E45;
-    --amber:#C9A7FF;          /* lavender pastel pop */
-    --neon:#FF2D55;           /* cherry coke red */
-    --neon2:#7FE7DC;          /* mint pastel pop for contrast sparkle */
-    --text:#F5ECF2;
-    --muted:#B79CB4;
-    --border:#33203B;
+    --bg:#1B0F24;
+    --surface:#28182F;
+    --surface-2:#231428;
+    --grid:#3A2440;
+    --teal:#FF5C8A;          /* cherry-coke pink/red pop */
+    --teal-dim:#8A3A55;
+    --amber:#D6B8FF;          /* lavender pastel pop */
+    --neon:#FF3B6E;           /* cherry coke red */
+    --neon2:#8FF0E4;          /* mint pastel pop for contrast sparkle */
+    --text:#FBF3F8;
+    --muted:#C9A9C6;
+    --border:#40284A;
     --max:1080px;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
   body{
-    background:var(--bg);
+    background:
+      radial-gradient(ellipse 900px 500px at 15% 0%, rgba(255,59,110,0.12), transparent 60%),
+      radial-gradient(ellipse 800px 500px at 90% 15%, rgba(214,184,255,0.10), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 50% 100%, rgba(143,240,228,0.06), transparent 60%),
+      var(--bg);
     color:var(--text);
     font-family:'Poppins', sans-serif;
     line-height:1.6;
@@ -270,38 +274,49 @@
     background:var(--teal); display:inline-block; margin-right:8px;
   }
   .node-center{
-    width:170px; height:170px; border-radius:50%;
-    padding:5px;
-    background:conic-gradient(from 0deg, var(--neon), var(--amber), var(--neon2), var(--neon));
+    width:260px; height:260px; border-radius:50%;
+    position:relative;
     display:flex; align-items:center; justify-content:center;
     z-index:2;
-    animation:centerGlow 4s ease-in-out infinite, spinRing 8s linear infinite;
+    animation:centerGlow 4s ease-in-out infinite;
+  }
+  .node-center::before{
+    content:'';
+    position:absolute;
+    inset:-6px;
+    border-radius:50%;
+    background:conic-gradient(from 0deg, var(--neon), var(--amber), var(--neon2), var(--neon));
+    animation:spinRing 6s linear infinite;
+    z-index:0;
   }
   .node-center-inner{
-    width:100%; height:100%; border-radius:50%;
+    position:relative;
+    width:calc(100% - 12px); height:calc(100% - 12px);
+    border-radius:50%;
     background:var(--surface);
     display:flex; align-items:center; justify-content:center;
     flex-direction:column;
     overflow:hidden;
+    z-index:1;
   }
   .node-center-inner img{
-    width:100%; height:100%; object-fit:cover; border-radius:50%;
+    width:100%; height:100%; object-fit:cover; object-position:center 25%; border-radius:50%;
   }
   @keyframes centerGlow{
     0%,100%{ box-shadow:0 0 0 1px rgba(255,92,138,0.1), 0 0 40px rgba(255,45,85,0.25); }
     50%{ box-shadow:0 0 0 1px rgba(201,167,255,0.2), 0 0 65px rgba(255,45,85,0.4); }
   }
   @keyframes spinRing{
-    0%{ filter:hue-rotate(0deg); }
-    100%{ filter:hue-rotate(360deg); }
+    0%{ transform:rotate(0deg); }
+    100%{ transform:rotate(360deg); }
   }
   .node-center .initials{
     font-family:'Unbounded', sans-serif;
-    font-size:26px; font-weight:700; color:var(--neon);
+    font-size:36px; font-weight:700; color:var(--neon);
   }
   .node-center .role{
     font-family:'JetBrains Mono', monospace;
-    font-size:9px; color:var(--muted); margin-top:6px; letter-spacing:1px;
+    font-size:10px; color:var(--muted); margin-top:6px; letter-spacing:1px;
   }
   @keyframes nodeIn{ to{opacity:1;} }
   .n1{animation-delay:.4s;} .n2{animation-delay:.6s;} .n3{animation-delay:.8s;} .n4{animation-delay:1s;}
@@ -534,7 +549,7 @@
 
 <header>
   <nav>
-    <div class="logo">SK<span>.SYS</span></div>
+    <div class="logo">Shravani <span>✦</span></div>
     <ul class="navlinks">
       <li><a href="#about">About</a></li>
       <li><a href="#stack">Stack</a></li>
@@ -596,7 +611,7 @@
 <section id="about">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="sec-tag">Module 01</span>
+      <span class="sec-tag">✦ a little about me</span>
       <h2 class="sec-title">About.sys</h2>
     </div>
     <div class="about-body reveal">
@@ -606,7 +621,7 @@
         <p>I treat documentation as part of the engineering, not an afterthought: every project I ship comes with the architecture and workflows written down for whoever picks it up next.</p>
       </div>
       <div class="status-block">
-        <div class="status-block-title"><span class="pulse"></span>current.status</div>
+        <div class="status-block-title"><span class="pulse"></span>quick facts</span></div>
         <div class="status-row"><span class="k">education</span><span class="v">B.Tech CE, PCCOE '27</span></div>
         <div class="status-row"><span class="k">specialization</span><span class="v">Generative AI (Minor)</span></div>
         <div class="status-row"><span class="k">focus</span><span class="v">Full-Stack + AI/ML</span></div>
@@ -621,7 +636,7 @@
 <section id="stack">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="sec-tag">Module 02</span>
+      <span class="sec-tag">✦ my toolkit</span>
       <h2 class="sec-title">Tech Stack</h2>
     </div>
     <div class="stack-layers reveal">
@@ -669,14 +684,14 @@
 <section id="projects">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="sec-tag">Module 03</span>
+      <span class="sec-tag">✦ things i've built</span>
       <h2 class="sec-title">Case Files</h2>
     </div>
 
     <div class="case reveal">
       <div class="case-head">
         <div>
-          <span class="case-id">CASE_001 / HEALTHCARE</span>
+          <span class="case-id">Project 01 — Healthcare</span>
           <div class="case-title">Online Appointment Booking System</div>
         </div>
         <a class="case-link" href="https://github.com/mentheshreya/Online_Appointment_Booking_System" target="_blank" rel="noopener">View repo →</a>
@@ -693,7 +708,7 @@
     <div class="case reveal">
       <div class="case-head">
         <div>
-          <span class="case-id">CASE_002 / OCR + ETL</span>
+          <span class="case-id">Project 02 — OCR + ETL</span>
           <div class="case-title">Eco-Snap — AI Receipt Scanner</div>
         </div>
         <a class="case-link" href="https://github.com/smariaj/Eco-Snap-AI-Receipt-Scanner-" target="_blank" rel="noopener">View repo →</a>
@@ -709,7 +724,7 @@
     <div class="case reveal">
       <div class="case-head">
         <div>
-          <span class="case-id">CASE_003 / ML CLASSIFIER</span>
+          <span class="case-id">Project 03 — ML Classifier</span>
           <div class="case-title">SMS Spam Detection</div>
         </div>
         <a class="case-link" href="https://github.com/mentheshreya/SMS_Spam_detection" target="_blank" rel="noopener">View repo →</a>
@@ -728,7 +743,7 @@
 <section id="experience">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="sec-tag">Module 04</span>
+      <span class="sec-tag">✦ where i've worked</span>
       <h2 class="sec-title">Experience Log</h2>
     </div>
     <div class="timeline reveal">
@@ -752,7 +767,7 @@
 <section id="achievements">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="sec-tag">Module 05</span>
+      <span class="sec-tag">✦ wins & certs</span>
       <h2 class="sec-title">Recognition &amp; Certifications</h2>
     </div>
     <div class="grid-2 reveal">
@@ -811,7 +826,7 @@
 <!-- CONTACT -->
 <section id="contact">
   <div class="wrap contact-wrap">
-    <span class="sec-tag">Module 06</span>
+    <span class="sec-tag">✦ let's talk</span>
     <div class="contact-title">Let's build something<br>worth documenting.</div>
     <p class="contact-sub">Open to internships, full-time roles, and freelance projects. Reach out anytime.</p>
     <div class="contact-links">
