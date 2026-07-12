@@ -7,19 +7,21 @@
 <meta name="description" content="Portfolio of Shravani Kalapure — Full-Stack & AI/ML Engineer, final-year B.Tech Computer Engineering.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700;800&family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0B1120;
-    --surface:#111A2E;
-    --surface-2:#0E1626;
-    --grid:#1E2A44;
-    --teal:#5EEAD4;
-    --teal-dim:#2E6F68;
-    --amber:#F5A623;
-    --text:#E5E9F0;
-    --muted:#8B96AC;
-    --border:#22304A;
+    --bg:#0D0710;
+    --surface:#1A0F20;
+    --surface-2:#170B1C;
+    --grid:#2A1830;
+    --teal:#FF5C8A;          /* cherry-coke pink/red pop, replaces old teal accent */
+    --teal-dim:#7A2E45;
+    --amber:#C9A7FF;          /* lavender pastel pop */
+    --neon:#FF2D55;           /* cherry coke red */
+    --neon2:#7FE7DC;          /* mint pastel pop for contrast sparkle */
+    --text:#F5ECF2;
+    --muted:#B79CB4;
+    --border:#33203B;
     --max:1080px;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
@@ -27,7 +29,7 @@
   body{
     background:var(--bg);
     color:var(--text);
-    font-family:'Inter', sans-serif;
+    font-family:'Poppins', sans-serif;
     line-height:1.6;
     overflow-x:hidden;
     position:relative;
@@ -38,8 +40,8 @@
     position:absolute;
     inset:0;
     background-image:
-      linear-gradient(rgba(94,234,212,0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(94,234,212,0.05) 1px, transparent 1px);
+      linear-gradient(rgba(255,92,138,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,92,138,0.06) 1px, transparent 1px);
     background-size:64px 64px;
     -webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 40%, black 0%, transparent 75%);
     mask-image:radial-gradient(ellipse 70% 60% at 50% 40%, black 0%, transparent 75%);
@@ -60,7 +62,7 @@
   }
   .orb-1{
     width:420px; height:420px;
-    background:radial-gradient(circle, var(--teal), transparent 70%);
+    background:radial-gradient(circle, var(--neon), transparent 70%);
     top:-10%; left:-8%;
     animation:orbFloat1 14s ease-in-out infinite;
   }
@@ -69,6 +71,28 @@
     background:radial-gradient(circle, var(--amber), transparent 70%);
     bottom:-15%; right:-8%;
     animation:orbFloat2 16s ease-in-out infinite;
+  }
+  .orb-3{
+    width:300px; height:300px;
+    background:radial-gradient(circle, var(--neon2), transparent 70%);
+    top:35%; right:20%;
+    opacity:0.22;
+    animation:orbFloat1 11s ease-in-out infinite reverse;
+  }
+
+  /* sparkles */
+  .sparkle{
+    position:absolute;
+    font-size:18px;
+    color:var(--amber);
+    pointer-events:none;
+    animation:twinkle 2.6s ease-in-out infinite;
+    opacity:0;
+    z-index:1;
+  }
+  @keyframes twinkle{
+    0%,100%{ opacity:0; transform:scale(0.6) rotate(0deg); }
+    50%{ opacity:1; transform:scale(1.1) rotate(20deg); }
   }
   @keyframes orbFloat1{
     0%,100%{ transform:translate(0,0) scale(1); }
@@ -88,13 +112,13 @@
     inset:0;
     pointer-events:none;
     z-index:1;
-    background:radial-gradient(600px circle at var(--mx,50%) var(--my,50%), rgba(94,234,212,0.06), transparent 40%);
+    background:radial-gradient(600px circle at var(--mx,50%) var(--my,50%), rgba(255,92,138,0.08), transparent 40%);
     transition:background .1s ease-out;
   }
   @media (prefers-reduced-motion: reduce){
     *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
   }
-  h1,h2,h3,.display{font-family:'Space Grotesk', sans-serif;}
+  h1,h2,h3,.display{font-family:'Unbounded', sans-serif;}
   .mono{font-family:'JetBrains Mono', monospace;}
   a{color:inherit;}
   .wrap{max-width:var(--max); margin:0 auto; padding:0 28px;}
@@ -171,7 +195,7 @@
   }
   .hero h1 .accent{
     color:var(--teal);
-    text-shadow:0 0 30px rgba(94,234,212,0.5);
+    text-shadow:0 0 30px rgba(255,92,138,0.6);
   }
   .hero p.lede{
     font-size:17px; color:var(--muted); max-width:480px; margin-bottom:32px;
@@ -181,26 +205,27 @@
     font-family:'JetBrains Mono', monospace;
     font-size:13px; letter-spacing:0.3px;
     padding:13px 22px;
-    border-radius:4px;
+    border-radius:30px;
     text-decoration:none;
     display:inline-flex; align-items:center; gap:8px;
-    transition:all .25s ease;
+    transition:all .3s cubic-bezier(.34,1.56,.64,1);
     border:1px solid transparent;
     position:relative;
   }
   .btn-primary{
-    background:var(--teal); color:#0B1120; font-weight:600;
+    background:linear-gradient(135deg, var(--neon), var(--teal));
+    color:#fff; font-weight:600;
   }
   .btn-primary:hover{
-    background:#82f0dd; transform:translateY(-2px);
-    box-shadow:0 8px 24px rgba(94,234,212,0.35);
+    transform:translateY(-3px) scale(1.05) rotate(-1deg);
+    box-shadow:0 10px 28px rgba(255,45,85,0.4);
   }
   .btn-ghost{
     border-color:var(--border); color:var(--text);
   }
   .btn-ghost:hover{
-    border-color:var(--teal); color:var(--teal); transform:translateY(-2px);
-    box-shadow:0 8px 20px rgba(94,234,212,0.12);
+    border-color:var(--amber); color:var(--amber); transform:translateY(-3px) scale(1.05) rotate(1deg);
+    box-shadow:0 10px 22px rgba(201,167,255,0.25);
   }
 
   /* diagram */
@@ -213,52 +238,71 @@
     position:absolute;
     font-family:'JetBrains Mono', monospace;
     font-size:11px;
+    font-weight:600;
     background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:6px;
-    padding:10px 14px;
+    border:1.5px solid var(--border);
+    border-radius:20px;
+    padding:10px 16px;
     color:var(--muted);
     letter-spacing:0.5px;
     white-space:nowrap;
     opacity:0;
-    animation:nodeIn .6s ease forwards;
-    transition:border-color .25s ease, color .25s ease, transform .25s ease, box-shadow .25s ease;
+    animation:nodeIn .7s cubic-bezier(.34,1.56,.64,1) forwards, floaty 5s ease-in-out infinite;
+    transition:border-color .25s ease, color .25s ease, transform .2s ease, box-shadow .25s ease;
     cursor:default;
+    box-shadow:0 6px 16px rgba(0,0,0,0.3);
   }
   .node:hover{
-    border-color:var(--teal); color:var(--teal);
-    transform:translateY(-2px);
-    box-shadow:0 8px 20px rgba(94,234,212,0.18);
+    border-color:var(--neon); color:var(--neon);
+    transform:translateY(-4px) scale(1.08) rotate(-3deg) !important;
+    box-shadow:0 10px 24px rgba(255,45,85,0.3);
   }
+  @keyframes floaty{
+    0%,100%{ transform:translateY(0) rotate(var(--rot,0deg)); }
+    50%{ transform:translateY(-8px) rotate(var(--rot,0deg)); }
+  }
+  .n1{top:6%; left:2%; --rot:-4deg;}
+  .n2{top:6%; right:0%; --rot:3deg;}
+  .n3{bottom:10%; left:0%; --rot:3deg;}
+  .n4{bottom:4%; right:4%; --rot:-3deg;}
   .node .dot{
     width:6px; height:6px; border-radius:50%;
     background:var(--teal); display:inline-block; margin-right:8px;
   }
   .node-center{
-    width:150px; height:150px; border-radius:50%;
+    width:170px; height:170px; border-radius:50%;
+    padding:5px;
+    background:conic-gradient(from 0deg, var(--neon), var(--amber), var(--neon2), var(--neon));
+    display:flex; align-items:center; justify-content:center;
+    z-index:2;
+    animation:centerGlow 4s ease-in-out infinite, spinRing 8s linear infinite;
+  }
+  .node-center-inner{
+    width:100%; height:100%; border-radius:50%;
     background:var(--surface);
-    border:1px solid var(--teal-dim);
     display:flex; align-items:center; justify-content:center;
     flex-direction:column;
-    z-index:2;
-    animation:centerGlow 4s ease-in-out infinite;
+    overflow:hidden;
+  }
+  .node-center-inner img{
+    width:100%; height:100%; object-fit:cover; border-radius:50%;
   }
   @keyframes centerGlow{
-    0%,100%{ box-shadow:0 0 0 1px rgba(94,234,212,0.08), 0 0 40px rgba(94,234,212,0.08); }
-    50%{ box-shadow:0 0 0 1px rgba(94,234,212,0.15), 0 0 60px rgba(94,234,212,0.2); }
+    0%,100%{ box-shadow:0 0 0 1px rgba(255,92,138,0.1), 0 0 40px rgba(255,45,85,0.25); }
+    50%{ box-shadow:0 0 0 1px rgba(201,167,255,0.2), 0 0 65px rgba(255,45,85,0.4); }
+  }
+  @keyframes spinRing{
+    0%{ filter:hue-rotate(0deg); }
+    100%{ filter:hue-rotate(360deg); }
   }
   .node-center .initials{
-    font-family:'Space Grotesk', sans-serif;
-    font-size:30px; font-weight:600; color:var(--teal);
+    font-family:'Unbounded', sans-serif;
+    font-size:26px; font-weight:700; color:var(--neon);
   }
   .node-center .role{
     font-family:'JetBrains Mono', monospace;
     font-size:9px; color:var(--muted); margin-top:6px; letter-spacing:1px;
   }
-  .n1{top:6%; left:2%;}
-  .n2{top:6%; right:0%;}
-  .n3{bottom:10%; left:0%;}
-  .n4{bottom:4%; right:4%;}
   @keyframes nodeIn{ to{opacity:1;} }
   .n1{animation-delay:.4s;} .n2{animation-delay:.6s;} .n3{animation-delay:.8s;} .n4{animation-delay:1s;}
 
@@ -342,7 +386,7 @@
   }
   .chip:hover{
     border-color:var(--teal); color:var(--teal);
-    box-shadow:0 4px 14px rgba(94,234,212,0.15);
+    box-shadow:0 4px 14px rgba(255,92,138,0.2);
     transform:translateY(-1px);
   }
   @media(max-width:640px){
@@ -357,7 +401,7 @@
     border-radius:10px;
     margin-bottom:24px;
     overflow:hidden;
-    transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+    transition:transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .3s ease, border-color .3s ease;
     transform-style:preserve-3d;
     will-change:transform;
     position:relative;
@@ -365,13 +409,13 @@
   .case::after{
     content:'';
     position:absolute; inset:0;
-    background:radial-gradient(500px circle at var(--cx,50%) var(--cy,50%), rgba(94,234,212,0.08), transparent 45%);
+    background:radial-gradient(500px circle at var(--cx,50%) var(--cy,50%), rgba(255,92,138,0.1), transparent 45%);
     opacity:0; transition:opacity .3s ease;
     pointer-events:none;
   }
   .case:hover{
     border-color:var(--teal-dim);
-    box-shadow:0 20px 50px -20px rgba(94,234,212,0.25), 0 0 0 1px rgba(94,234,212,0.06);
+    box-shadow:0 20px 50px -20px rgba(255,92,138,0.3), 0 0 0 1px rgba(255,92,138,0.08);
   }
   .case:hover::after{opacity:1;}
   .case-head{
@@ -393,8 +437,8 @@
     transition:all .25s ease;
   }
   .case-link:hover{
-    background:rgba(94,234,212,0.1);
-    box-shadow:0 6px 18px rgba(94,234,212,0.2);
+    background:rgba(255,92,138,0.15);
+    box-shadow:0 6px 18px rgba(255,92,138,0.25);
     transform:translateY(-1px);
   }
   .case-desc{padding:18px 26px 0; color:var(--muted); font-size:15px;}
@@ -459,7 +503,7 @@
   }
   .cert-badge:hover{
     border-color:var(--teal); color:var(--teal);
-    box-shadow:0 4px 14px rgba(94,234,212,0.15);
+    box-shadow:0 4px 14px rgba(255,92,138,0.2);
     transform:translateY(-1px);
   }
 
@@ -508,6 +552,11 @@
 <section class="hero" style="border-top:none; padding-top:140px;">
   <div class="orb orb-1"></div>
   <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="sparkle" style="top:12%; left:38%;">✦</div>
+  <div class="sparkle" style="top:70%; left:8%; animation-delay:.8s;">✧</div>
+  <div class="sparkle" style="top:18%; right:6%; animation-delay:1.4s;">✦</div>
+  <div class="sparkle" style="bottom:14%; right:30%; animation-delay:.4s;">✧</div>
   <div class="wrap hero-grid">
     <div>
       <span class="eyebrow">System status: open to work</span>
@@ -527,8 +576,13 @@
         <path d="M200,210 C260,250 310,300 350,380" />
       </svg>
       <div class="node-center">
-        <div class="initials">SK</div>
-        <div class="role">ENGINEER.NODE</div>
+        <div class="node-center-inner">
+          <img src="profile.jpg" alt="Shravani Kalapure" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div style="display:none; flex-direction:column; align-items:center;">
+            <div class="initials">SK</div>
+            <div class="role">ENGINEER.NODE</div>
+          </div>
+        </div>
       </div>
       <div class="node n1"><span class="dot"></span>FULL-STACK</div>
       <div class="node n2"><span class="dot"></span>AI / ML</div>
@@ -825,6 +879,31 @@
         card.style.transform = 'perspective(900px) rotateX(0) rotateY(0) translateY(0)';
       });
     });
+    // sparkle cursor trail — playful pop of color following the mouse
+    const sparkleChars = ['✦','✧','✨','♡'];
+    let lastSpark = 0;
+    window.addEventListener('mousemove', (e)=>{
+      const now = Date.now();
+      if(now - lastSpark < 90) return;
+      lastSpark = now;
+      const s = document.createElement('span');
+      s.textContent = sparkleChars[Math.floor(Math.random()*sparkleChars.length)];
+      s.style.position = 'fixed';
+      s.style.left = e.clientX + 'px';
+      s.style.top = e.clientY + 'px';
+      s.style.pointerEvents = 'none';
+      s.style.fontSize = (10 + Math.random()*8) + 'px';
+      s.style.color = Math.random() > 0.5 ? '#FF5C8A' : '#C9A7FF';
+      s.style.zIndex = 999;
+      s.style.transition = 'transform 0.8s ease-out, opacity 0.8s ease-out';
+      s.style.transform = 'translate(-50%,-50%) scale(1)';
+      document.body.appendChild(s);
+      requestAnimationFrame(()=>{
+        s.style.transform = `translate(-50%,-50%) translateY(-24px) scale(0.3)`;
+        s.style.opacity = '0';
+      });
+      setTimeout(()=> s.remove(), 850);
+    }, {passive:true});
   }
 </script>
 
